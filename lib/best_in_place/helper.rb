@@ -32,6 +32,13 @@ module BestInPlace
         display_value = value ? opts[:collection][1] : opts[:collection][0]
         collection = opts[:collection].to_json
       end
+
+      if opts[:type] == :date
+        value = real_object.send(field)
+        display_value = (value && I18n.l(value))
+      end
+
+
       classes = ["best_in_place"]
       unless opts[:classes].nil?
         # the next three lines enable this opt to handle both a stings and a arrays
@@ -129,4 +136,3 @@ module BestInPlace
     end
   end
 end
-
